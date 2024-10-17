@@ -1,47 +1,76 @@
 <app-nav></app-nav>
-<div class="container">
-<form (ngSubmit)="onSubmit()">
+<div class="container mt-4">
+  <h2 class="text-center mb-4 display-4">Registrar usuario</h2>
+
+  <form class="row g-3" (ngSubmit)="onSubmit()">
+    <!-- Campo Email -->
     <div class="col-md-6">
-      <label for="username" class="form-label">Email</label>
-      <input type="email" class="form-control" id="username" name="username" [(ngModel)]="user.username" placeholder="Email">
-      <!--<div class="text-danger">
-      <div>
-          El user es requerido.
-      </div>
-      <div>
-          El Email debe tener un formato válido.
-      </div>
-  </div>-->
+      <label for="username" class="form-label">
+        <i class="fas fa-envelope me-2"></i>Email
+      </label>
+      <input type="email" class="form-control" id="username" name="username" [(ngModel)]="user.username" required
+             placeholder="Ingresa tu email" [ngModelOptions]="{standalone: true}">
     </div>
+
+    <!-- Campo Contraseña -->
     <div class="col-md-6">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" placeholder="password">
+      <label for="password" class="form-label">
+        <i class="fas fa-lock me-2"></i>Contraseña
+      </label>
+      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" required
+             placeholder="Ingresa tu contraseña" [ngModelOptions]="{standalone: true}">
     </div>
+
+    <!-- Campo Nombre -->
     <div class="col-md-6">
-      <label for="firstname" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Nombre" [(ngModel)]="user.firstname">
+      <label for="firstname" class="form-label">
+        <i class="fas fa-user me-2"></i>Nombre
+      </label>
+      <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="user.firstname" required
+             placeholder="Ingresa tu nombre" [ngModelOptions]="{standalone: true}">
     </div>
+
+    <!-- Campo Apellido -->
     <div class="col-md-6">
-      <label for="lastname" class="form-label">Apellido</label>
-      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Apellido" [(ngModel)]="user.lastname">
+      <label for="lastname" class="form-label">
+        <i class="fas fa-user me-2"></i>Apellido
+      </label>
+      <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="user.lastname" required
+             placeholder="Ingresa tu apellido" [ngModelOptions]="{standalone: true}">
     </div>
+
+    <!-- Campo Celular -->
     <div class="col-md-6">
-      <label for="phone" class="form-label">Celular</label>
-      <input type="phone" class="form-control" id="phone" name="phone" [(ngModel)]="user.phone" placeholder="Numero de contacto">
+      <label for="phone" class="form-label">
+        <i class="fas fa-phone me-2"></i>Celular
+      </label>
+      <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="user.phone" required
+             placeholder="Ingresa tu número de contacto" [ngModelOptions]="{standalone: true}">
     </div>
+
+    <!-- Campo Rol -->
     <div class="col-md-4">
-      <label for="role" class="form-label">Rol</label>
-      <select id="role" name="role" class="form-select" [(ngModel)]="user.role">
-        <option value="-1" disabled selected>Seleccione rol</option>
-        <option value="ADMIN">ADMIN</option>
-        <option value="USER">USER</option>
+      <label for="role" class="form-label">
+        <i class="fas fa-user-tag me-2"></i>Rol
+      </label>
+      <select id="role" name="role" class="form-select" [(ngModel)]="user.role" required [ngModelOptions]="{standalone: true}">
+        <option value="" disabled selected>Seleccione rol</option>
+        <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
       </select>
     </div>
-    <div class="col-12 mt-5">
-      <button type="submit" class="btn btn-primary">REGISTRAR</button>
+
+    <!-- Botón Registrar -->
+    <div class="col-12 mt-5 text-center">
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save me-2"></i>Registrar
+      </button>
     </div>
   </form>
+
+  <!-- Botón Ir a Inicio -->
   <div class="col-12 text-center mt-4">
-    <button href="#" class="btn btn-secondary" (click)="irAlistado()" >Volver</button>
+    <button class="btn btn-secondary" (click)="irAlistado()">
+      <i class="fas fa-home me-2"></i>Ir a Inicio
+    </button>
   </div>
 </div>

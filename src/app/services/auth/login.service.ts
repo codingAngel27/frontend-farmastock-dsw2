@@ -12,7 +12,7 @@ export class LoginService {
 
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserData: BehaviorSubject<String> =new BehaviorSubject<String>("");
-
+  
   constructor(private http: HttpClient) { 
     this.currentUserLoginOn=new BehaviorSubject<boolean>(sessionStorage.getItem("token")!=null);
     this.currentUserData=new BehaviorSubject<String>(sessionStorage.getItem("token") || "");
@@ -34,7 +34,15 @@ export class LoginService {
     sessionStorage.removeItem("token");
     this.currentUserLoginOn.next(false);
   }
-
+ /**
+  * name
+  */
+ public isAuthenticated(): boolean {
+  const token = sessionStorage.getItem('token');
+    return !!token;
+ }  
+    
+  
   private handleError(error:HttpErrorResponse){
     if(error.status===0){
       console.error('Se ha producio un error ', error.error);

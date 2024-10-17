@@ -81,7 +81,7 @@ export class PersonalDetailsComponent  {
   logout()
   {
     this.loginService.logout();
-    this.router.navigate(['/inicio'])
+    this.router.navigate(['/iniciar-sesion'])
   }
 
 }

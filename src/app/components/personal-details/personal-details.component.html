@@ -1,39 +1,38 @@
 <li class="nav-item dropdown pe-3">
-  <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-      <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+  <a class="nav-link nav-profile d-flex align-items-center pe-0 text-white" href="#" data-bs-toggle="dropdown">
+      <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" width="50 em" height="auto">
       <span class="d-none d-md-block dropdown-toggle ps-2">{{ user?.firstname }} {{ user?.lastname }}</span>
     </a><!-- End Profile Image Icon -->
     
     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-      <li class="dropdown-header text-center">
-        <h6>{{ user?.firstname }} {{ user?.lastname }}</h6>
-        <span>{{ user?.phone }}</span>
+      <li class="dropdown-item d-flex align-items-center">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Cel: {{ user?.phone }}</span>
       </li>
       <li>
         <hr class="dropdown-divider">
       </li>
-      <li>
-        <a class="dropdown-item d-flex align-items-center" routerLink="/register" *ngIf="userLoginOn && !editMode" (click)="editMode=true">
+       <li>
+        <a class="dropdown-item d-flex align-items-center" routerLink="/iniciar-sesion/register" *ngIf="userLoginOn && !editMode" (click)="editMode=true">
           <i class="bi bi-box-arrow-right"></i>
           <span>Registrar Usuario</span>
         </a>
       </li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      <li *ngIf="userLoginOn" class="nav-item">
+        <a class="dropdown-item d-flex align-items-center"  (click)="logout()"  routerLink="/iniciar-sesion">Cerrar Sesión</a>
+        <i class="bi bi-box-arrow-right"></i>
+      </li>
+     
       
+      <li>
+        <hr class="dropdown-divider">
+      </li>
       <!--<li>
-        <hr class="dropdown-divider">
-      </li>
-      <li>
         <button *ngIf="userLoginOn && !editMode" (click)="editMode=true"  class="btn btn-dark">Editar Datos Personales</button>
-      </li>      
-      <li>
-        <hr class="dropdown-divider">
       </li>-->
-      <li>
-        <a class="dropdown-item d-flex align-items-center" routerLink="/">
-          <i class="bi bi-box-arrow-right"></i>
-          <span>Salir</span>
-        </a>
-      </li>
     </ul><!-- End Profile Dropdown Items -->
   </li>
 

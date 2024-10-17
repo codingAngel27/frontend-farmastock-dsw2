@@ -1,43 +1,62 @@
 <app-nav></app-nav>
-<br>
-
-<body>
-    <div class="container">
-        <h4 class="text-center">AGREGAR PRODUCTOS</h4>
-        <br>
-        <form class="row g-3" (ngSubmit)="registrarProducto()">
-            <div class="col-md-6">
-                <label for="codPro" class="form-label">Codigo</label>
-                <input type="double" class="form-control" id="codPro" [(ngModel)]="newProducto.codPro" required placeholder="Ingresa el codigo del producto.." [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="col-12">
-                <label for="nomPro" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nomPro" [(ngModel)]="newProducto.nomPro" requiredplaceholder="Ingresa el nombre del producto.." [ngModelOptions]="{standalone: true}">
-            </div>
-
-            <div class="col-md-6">
-                <label for="proveedor" class="form-label">Proveedor</label>
-                <select id="proveedor" class="form-select" [(ngModel)]="newProducto.proveedor" [ngModelOptions]="{standalone: true}">
-                    <option selected value="0">seleccione...</option>
-                    <option *ngFor="let proveedor of proveedores" 
-                    [value]="proveedor.id">{{proveedor.nomProvee}}</option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label for="precio" class="form-label">Precio</label>
-                <input type="number" class="form-control" id="precio" [(ngModel)]="newProducto.precio" placeholder="Ingrese el precio.." [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="col-md-6">
-                <label for="fechaCompra" class="form-label">Fecha Compra</label>
-                <input type="date" forma class="form-control" id="fechaCompra" [(ngModel)]="newProducto.fechaCompra" [ngModelOptions]="{standalone: true}">
-            </div>
-
-            <div class="col-md-6">
-                <label for="stock" class="form-label">stock</label>
-                <input type="number" class="form-control" id="stock" [(ngModel)]="newProducto.stock" placeholder="Ingrese el stock.." [ngModelOptions]="{standalone: true}">
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Guardar</button> | <button type="button" class="btn btn-danger" (click)="regresar()">Regresar</button>
-            </div>
-        </form>
-    </div>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Agregar Producto</h2>
+  
+    <form class="row g-3" (ngSubmit)="registrarProducto()">
+      <!-- Código -->
+      <div class="col-md-6">
+        <label for="codPro" class="form-label">Código</label>
+        <input type="text" class="form-control" id="codPro" [(ngModel)]="newProducto.codPro" required 
+               placeholder="Ingresa el código del producto" [ngModelOptions]="{standalone: true}">
+      </div>
+  
+      <!-- Nombre -->
+      <div class="col-md-6">
+        <label for="nomPro" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nomPro" [(ngModel)]="newProducto.nomPro" required 
+               placeholder="Ingresa el nombre del producto" [ngModelOptions]="{standalone: true}">
+      </div>
+  
+      <!-- Proveedor -->
+      <div class="col-md-6">
+        <label for="proveedor" class="form-label">Proveedor</label>
+        <select id="proveedor" class="form-select" [(ngModel)]="newProducto.proveedor" required 
+                [ngModelOptions]="{standalone: true}">
+          <option selected disabled value="0">Seleccione un proveedor...</option>
+          <option *ngFor="let proveedor of proveedores" [value]="proveedor.id">{{proveedor.nomProvee}}</option>
+        </select>
+      </div>
+  
+      <!-- Precio -->
+      <div class="col-md-6">
+        <label for="precio" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="precio" [(ngModel)]="newProducto.precio" required 
+               placeholder="Ingresa el precio del producto" [ngModelOptions]="{standalone: true}">
+      </div>
+  
+      <!-- Fecha de Compra -->
+      <div class="col-md-6">
+        <label for="fechaCompra" class="form-label">Fecha de Compra</label>
+        <input type="date" class="form-control" id="fechaCompra" [(ngModel)]="newProducto.fechaCompra" 
+               required [ngModelOptions]="{standalone: true}">
+      </div>
+  
+      <!-- Stock -->
+      <div class="col-md-6">
+        <label for="stock" class="form-label">Stock</label>
+        <input type="number" class="form-control" id="stock" [(ngModel)]="newProducto.stock" required 
+               placeholder="Ingresa el stock disponible" [ngModelOptions]="{standalone: true}">
+      </div>
+  
+      <!-- Botones -->
+      <div class="col-12 d-flex justify-content-center mt-4">
+        <button type="submit" class="btn btn-primary me-2">
+          <i class="fa fa-save me-2"></i>Guardar
+        </button>
+        <button type="button" class="btn btn-danger" (click)="regresar()">
+          <i class="fa fa-arrow-left me-2"></i>Regresar
+        </button>
+      </div>
+    </form>
+  </div>
+  

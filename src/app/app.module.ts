@@ -11,8 +11,9 @@ import { NavComponent } from './shared/nav/nav.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
-import { UserService } from './services/user/user.service';
-import { LoginService } from './services/auth/login.service';
+import { MatTableModule } from '@angular/material/table';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
 import { RegisterComponent } from './register/register.component';
@@ -25,6 +26,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ListadoComponent } from './producto/listado/listado.component';
 import { RegistrarComponent } from './producto/registrar/registrar.component';
 import { EditarComponent } from './producto/editar/editar.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -52,6 +57,12 @@ import { EditarComponent } from './producto/editar/editar.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    MatSlideToggleModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatButtonModule,
+    MatMenuModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptorService,multi:true},

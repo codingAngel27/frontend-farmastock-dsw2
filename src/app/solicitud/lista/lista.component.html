@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary" (click)="irRegistroSolicitud()">Requerimiento</button>
     <br>
     <br>
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered" id="table">
   <thead>
     <tr>
       <th>ID</th>
@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let solicitud of solicitudes">
+    <tr *ngFor="let solicitud of pagedSolicitudes">
       <td>{{solicitud.id}}</td>
       <td>{{solicitud.objProducto?.nomPro}}</td>
       <td>{{solicitud.objProducto?.objProveedor?.nomProvee}}</td>
@@ -28,6 +28,11 @@
     </tr>
   </tbody>
 </table>
+<mat-paginator [length]="totalSolicitudes"
+                         [pageSize]="pageSize"
+                         [pageSizeOptions]="[5, 10, 20]"
+                         (page)="onPaginateChange($event)">
+          </mat-paginator>
 </div>
 
 

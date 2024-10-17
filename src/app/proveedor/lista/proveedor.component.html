@@ -3,41 +3,77 @@
     <h1 class="text-center mb-4">Proveedores</h1>
   
     <div class="mb-3 d-flex justify-content-between align-items-center">
-      <button type="button" class="btn btn-primary" (click)="irRegistrarProveedor()">Nuevo Proveedor</button>
+      <button class="btn btn-primary" (click)="irRegistrarProveedor()">Nuevo Proveedor</button>
+      <button class="btn btn-success" (click)="exportExcel()">Exportar Excel</button>
+      <input type="file" (change)="importExcel($event)" accept=".xlsx, .xls" hidden #fileInput>
+<button (click)="fileInput.click()" class="btn btn-primary">Importar Proveedores</button>
       <div class="d-flex align-items-center">
         <input type="text" class="form-control me-2" [(ngModel)]="name" placeholder="Buscar proveedor"/>
         <button (click)="buscarProveedor(name)" class="btn btn-outline-primary">Buscar</button>
       </div>
     </div>
   
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>RUC</th>
-          <th>Proveedor</th>
-          <th>Correo</th>
-          <th>Teléfono</th>
-          <th>Dirección</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let proveedor of proveedores">
-          <td>{{proveedor.id}}</td>
-          <td>{{proveedor.ruc}}</td>
-          <td>{{proveedor.nomProvee}}</td>
-          <td>{{proveedor.email}}</td>
-          <td>{{proveedor.telefono}}</td>
-          <td>{{proveedor.direccion}}</td>
-          <td>
-            <button (click)="irEditarProveedor(proveedor.id)" class="btn btn-success btn-sm me-2">Editar</button>
-            <button type="button" class="btn btn-warning btn-sm me-2"(click)="irDetalle(proveedor.id)" >Detalles</button>
-            <!-- <button (click)="eliminar(proveedor.id)" class="btn btn-danger btn-sm">Eliminar</button> -->
-          </td>
-        </tr>
-      </tbody>
+    <table id="table-proveedor" mat-table [dataSource]="pagedProveedores" class="mat-elevation-z8">
+
+      <!-- Columna ID -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let proveedor"> {{proveedor.id}} </td>
+      </ng-container>
+    
+      <!-- Columna RUC -->
+      <ng-container matColumnDef="ruc">
+        <th mat-header-cell *matHeaderCellDef> RUC </th>
+        <td mat-cell *matCellDef="let proveedor"> {{proveedor.ruc}} </td>
+      </ng-container>
+    
+      <!-- Columna Proveedor -->
+      <ng-container matColumnDef="nomProvee">
+        <th mat-header-cell *matHeaderCellDef> Proveedor </th>
+        <td mat-cell *matCellDef="let proveedor"> {{proveedor.nomProvee}} </td>
+      </ng-container>
+    
+      <!-- Columna Correo -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Correo </th>
+        <td mat-cell *matCellDef="let proveedor"> {{proveedor.email}} </td>
+      </ng-container>
+    
+      <!-- Columna Teléfono -->
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+        <td mat-cell *matCellDef="let proveedor"> {{proveedor.telefono}} </td>
+      </ng-container>
+    
+      <!-- Columna Dirección -->
+      <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef> Dirección </th>
+        <td mat-cell *matCellDef="let proveedor"> {{proveedor.direccion}} </td>
+      </ng-container>
+    
+      <!-- Columna Acciones -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let proveedor">
+          <button (click)="irEditarProveedor(proveedor.id)" class="btn btn-success btn-sm me-2">Editar</button>
+          <button (click)="irDetalle(proveedor.id)" class="btn btn-warning btn-sm me-2">Detalles</button>
+        </td>
+      </ng-container>
+    
+      <!-- Fila de encabezado -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    
+      <!-- Fila de datos -->
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    
+    <!-- Paginador -->
+    <mat-paginator [length]="totalProveedores"
+                   [pageSize]="5"
+                   [pageSizeOptions]="[5, 10, 20]"
+                   (page)="onPaginateChange($event)">
+    </mat-paginator>
+    
   </div>
 
 

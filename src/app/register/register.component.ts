@@ -10,8 +10,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  user: User = new User();
- 
+  user: User={
+    id:0,
+    username:"",
+    lastname:"",
+    firstname:"",
+    phone:"",
+    password:"",
+    role: "",
+  }
+  roles: string[] = ["ADMIN", "USER"];
   constructor(private userService: UserService, private enrutador: Router){}
 
   onSubmit(){
@@ -28,6 +36,6 @@ export class RegisterComponent {
     })
   }
   irAlistado(){
-    this.enrutador.navigate(['proveedor/lista'])
+    this.enrutador.navigate(['/inicio'])
   }
 }
